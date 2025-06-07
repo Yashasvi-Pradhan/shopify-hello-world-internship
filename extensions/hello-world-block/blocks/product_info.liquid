@@ -1,0 +1,43 @@
+{% assign product = block.settings.product %}
+
+<div style="
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #ffffff;
+  max-width: 350px;
+">
+  <h3 style="
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1c1c1c;
+    border-bottom: 1px solid #e1e1e1;
+    padding-bottom: 4px;
+  ">Product Info</h3>
+
+  <p style="margin: 6px 0; color: #333;"><strong>SKU:</strong> {{ product.variants.first.sku }}</p>
+  <p style="margin: 6px 0; color: #333;"><strong>Vendor:</strong> {{ product.vendor }}</p>
+
+  {% if product.metafields.demo.avg_rating %}
+    <p style="margin: 6px 0; color: #333;"><strong>Rating:</strong> {{ product.metafields.demo.avg_rating.value }}</p>
+  {% endif %}
+</div>
+
+
+
+{% schema %}
+{
+  "name": "Product Info Block",
+  "target": "section",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Select Product",
+      "autofill": true
+    }
+  ]
+}
+{% endschema %}

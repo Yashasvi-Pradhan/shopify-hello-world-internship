@@ -1,11 +1,18 @@
 <div style="font-size: 24px; color: green;">
-  Hello World!
-<div>
+  {{ block.settings.custom_text }}
+</div>
 
 {% schema %}
-{ 
+{
   "name": "Hello World Block",
   "target": "section",
-  "settings": []
+  "settings": [
+    {
+      "type": "text",
+      "id": "custom_text",
+      "label": "Customize Text",
+      "default": "Hello World!"
+    }
+  ]
 }
 {% endschema %}

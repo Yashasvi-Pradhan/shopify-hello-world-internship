@@ -3,7 +3,7 @@
 client_id = "290fd1a342ce091d04855064ca310d33"
 name = "hello-world-product-app"
 handle = "hello-world-product-app-5"
-application_url = "https://work-totals-photographer-ciao.trycloudflare.com"
+application_url = "https://experimental-corporate-ol-index.trycloudflare.com"
 embedded = true
 
 [build]
@@ -27,9 +27,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://work-totals-photographer-ciao.trycloudflare.com/auth/callback",
-  "https://work-totals-photographer-ciao.trycloudflare.com/auth/shopify/callback",
-  "https://work-totals-photographer-ciao.trycloudflare.com/api/auth/callback"
+  "https://experimental-corporate-ol-index.trycloudflare.com/auth/callback",
+  "https://experimental-corporate-ol-index.trycloudflare.com/auth/shopify/callback",
+  "https://experimental-corporate-ol-index.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]

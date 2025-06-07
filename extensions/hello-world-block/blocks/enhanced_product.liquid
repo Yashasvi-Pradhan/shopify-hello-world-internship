@@ -1,0 +1,83 @@
+
+<!-- Assign the product selected from theme settings to a variable called 'product' to get access to its properties -->
+{% assign product = block.settings.product %}
+
+<div style="
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #ffffff;
+  max-width: 400px;
+  font-size: 15px;
+" data-block-id="{{ block.id }}">
+    {%- comment -%}
+    The data-block-id attribute gives this block a unique identifier, so that JS can target each instance
+    of the block independently, and prevents toggle logic from interfering with other blocks on the page.
+    {%- endcomment -%}
+
+    <!-- Customizable heading -->
+  <h3 style="
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1c1c1c;
+    border-bottom: 1px solid #e1e1e1;
+    padding-bottom: 4px;
+  ">
+    {{ block.settings.custom_text }}
+  </h3>
+  <!-- Access and display a custom text field -->
+
+  {% if product %}
+    <! -- Check if a product was selected. If not, display a message -->
+    <button data-toggle-button type="button" class="button">
+        Show 
+    </button>
+    <!-- This button has a 'data-toggle-button' attribute used by the JS to attach a click behavior -->
+
+    <!-- Hidden section containing product details -->
+    <div data-toggle-content style="display: none; margin-top: 10px;">
+      <p><strong>Vendor:</strong> {{ product.vendor }}</p>
+      <p><strong>SKU:</strong> {{ product.variants.first.sku }}</p>
+      {% if product.metafields.demo.avg_rating %}
+        <p><strong>Rating:</strong> {{ product.metafields.demo.avg_rating.value }}</p>
+      {% endif %}
+    </div>
+    {%- comment -%}
+    This section starts hidden, and the JS toggles its visibility when the button is clicked.
+    The 'avg_rating' metafield is only shown if it exists.
+    {%- endcomment -%}
+
+  {% else %}
+    <p style="color: #999;">No product selected.</p>
+    <!-- Message displayed if no product is selected -->
+  {% endif %}
+  
+</div>
+
+{% schema %}
+{
+  "name": "Enhanced Product Block",
+  "target": "section",
+  "javascript": "hidescontent.js", 
+  "settings": [
+    {
+      "type": "text",
+      "id": "custom_text",
+      "label": "Heading Text",
+      "default": "Additional Product Info"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Select Product",
+      "autofill": true
+    }
+  ]
+}
+{%- comment -%}
+The schema defines a text field for customizing the heading, fetches product info, 
+and references to 'hidecontent.js' for the button toggle action. 
+{%- endcomment -%}
+{% endschema %}

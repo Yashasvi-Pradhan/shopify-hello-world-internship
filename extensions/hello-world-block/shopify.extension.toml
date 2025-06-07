@@ -1,3 +1,2 @@
 name = "hello-world-block"
-type = "theme"
-
+type = "theme_app_extension"
